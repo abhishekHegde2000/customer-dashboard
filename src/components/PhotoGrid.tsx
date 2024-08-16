@@ -1,47 +1,59 @@
-import { fecthPhotos } from "@/services/PhotoService";
+import { fetchPhotos } from "@/services/PhotoService";
 import { Photo } from "@/types/types";
 import { useEffect, useState } from "react";
 
-const PhotoGrid = () => {
+interface PhotoGridProps {
+    id?: number;
+}
+
+const PhotoGrid = ({ id }: PhotoGridProps) => {
     const [photos, setPhotos] = useState<Photo[]>([]);
+    const [loadedPhotos, setLoadedPhotos] = useState<Photo[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         const loadPhotos = async () => {
+            setLoading(true);
             try {
-                const data = await fecthPhotos();
-                setPhotos(data);
+                const data = await fetchPhotos();
+                console.log(data);
+                setLoadedPhotos(data);
+                // Initialize with first 9 photos if available
+                setPhotos(data.slice(0, 9));
             } catch (error) {
                 console.error("Error fetching photos:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
         loadPhotos();
 
-        // create an array of updatePhotos: photo[] which updates random 9 photos every 10 seconds
-
         const updatePhotos = (photos: Photo[]): Photo[] => {
-            let updatedPhotos = [...photos];
-            for (let i = 0; i < 9; i++) {
-                updatedPhotos[Math.floor(Math.random() * photos.length)] =
-                    photos[Math.floor(Math.random() * photos.length)];
-            }
-            return updatedPhotos;
+            if (loadedPhotos.length === 0) return photos;
+            // Select 9 random photos from the loadedPhotos array
+            const shuffledPhotos = [...loadedPhotos].sort(
+                () => 0.5 - Math.random()
+            );
+            return shuffledPhotos.slice(0, 9);
         };
 
-        const intervalId = setInterval(updatePhotos, 10000); // Update every 10 seconds
+        const intervalId = setInterval(() => {
+            setPhotos((prevPhotos) => updatePhotos(prevPhotos));
+        }, 1000); // Update every 1 second
 
         return () => clearInterval(intervalId); // Cleanup interval on component unmount
-    }, []);
+    }, [loadedPhotos, id]);
+
+    if (loading) {
+        return <div>Loading...</div>; // You can replace this with a spinner or more styled loading indicator
+    }
 
     return (
         <div className="grid grid-cols-3 gap-2">
-            {photos.map((photo, index) => (
-                <div>
-                    <img
-                        key={index}
-                        src={photo.url}
-                        className="w-full h-40 object-cover"
-                    />
+            {photos.map((photo) => (
+                <div key={photo.id}>
+                    <img src={photo.url} className="w-full h-40 object-cover" />
                 </div>
             ))}
         </div>

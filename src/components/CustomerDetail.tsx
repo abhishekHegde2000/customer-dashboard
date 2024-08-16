@@ -13,7 +13,7 @@ const CustomerDetail = ({ id, customer }: CustomerDetailProps) => {
             <div>{id}</div>
             <div>{customer?.description}</div>
             <div>{id}</div>
-            <PhotoGrid />
+            <PhotoGrid id={customer?.id} />
         </div>
     );
 };
