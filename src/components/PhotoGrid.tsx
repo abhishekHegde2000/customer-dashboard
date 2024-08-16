@@ -40,7 +40,7 @@ const PhotoGrid = ({ id }: PhotoGridProps) => {
 
         const intervalId = setInterval(() => {
             setPhotos((prevPhotos) => updatePhotos(prevPhotos));
-        }, 1000); // Update every 1 second
+        }, 10000); // Update every 10 second
 
         return () => clearInterval(intervalId); // Cleanup interval on component unmount
     }, [id]);

@@ -16,7 +16,6 @@ const CustomerDetail = ({ id, customer, className }: CustomerDetailProps) => {
                 <h2 className="text-3xl font-bold text-gray-800 mb-4">
                     Customer Name: {customer?.name}
                 </h2>
-                <p className="text-gray-600 text-lg">{customer?.description}</p>
             </div>
             <div className="border-t border-gray-300 pt-6">
                 <h3 className="text-2xl font-semibold text-gray-700 mb-4">
