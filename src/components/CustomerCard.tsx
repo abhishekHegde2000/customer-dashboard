@@ -29,15 +29,15 @@ const CustomerCard = ({
                     ? "border-blue-500 bg-blue-50"
                     : "border-gray-300 bg-white"
             } cursor-pointer hover:scale-105 hover:shadow-lg ${className}`}
-            onClick={() => onClick && onClick(customer.id)} // Call the onClick handler
+            onClick={() => onClick && onClick(customer.id)}
         >
-            <Card>
-                <CardHeader className="flex items-center space-x-4">
+            <Card className="flex flex-col h-full">
+                <CardHeader className="flex items-center justify-center space-x-4">
                     <Avatar>
                         <AvatarImage src={customer.avatar} />
                         <AvatarFallback>profile image</AvatarFallback>
                     </Avatar>
-                    <div>
+                    <div className="text-center">
                         <CardTitle className="text-lg font-semibold text-gray-800">
                             {customer.name}
                         </CardTitle>
@@ -46,13 +46,13 @@ const CustomerCard = ({
                         </CardDescription>
                     </div>
                 </CardHeader>
-                <CardContent className="mt-2">
-                    <CardDescription className="text-sm text-gray-600">
+                <CardContent className="flex-1 flex items-center justify-center mt-2">
+                    <CardDescription className="text-sm text-gray-600 text-center">
                         {customer.address}
                     </CardDescription>
                 </CardContent>
-                <CardFooter className="mt-4">
-                    {/* You can add more details or actions here */}
+                <CardFooter className="flex justify-center mt-4">
+                    {/* Additional details or actions can be added here */}
                 </CardFooter>
             </Card>
         </div>

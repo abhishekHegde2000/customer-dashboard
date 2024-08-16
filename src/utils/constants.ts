@@ -1,11 +1,9 @@
 import { Customer, Photo } from "@/types/types";
 
-export const URL2 =
-    "https://66bed6e242533c4031443645.mockapi.io/api/v1/customers";
-export const URL = "";
+export const URL =
+    "https://66bed6e242533c4031443645.mockapi.io/api/v1/customer";
 
-export const URL1 =
-    "https://66bed6e242533c4031443645.mockapi.io/api/v1/photos1";
+export const URL1 = "https://66bed6e242533c4031443645.mockapi.io/api/v1/photos";
 
 export const customers: Customer[] = [
     {

@@ -43,7 +43,7 @@ const PhotoGrid = ({ id }: PhotoGridProps) => {
         }, 1000); // Update every 1 second
 
         return () => clearInterval(intervalId); // Cleanup interval on component unmount
-    }, [loadedPhotos, id]);
+    }, [id]);
 
     if (loading) {
         return (
@@ -56,20 +56,23 @@ const PhotoGrid = ({ id }: PhotoGridProps) => {
     }
 
     return (
-        <div className="grid grid-cols-3 gap-4 p-4">
-            {photos.map((photo) => (
-                <div
-                    key={photo.id}
-                    className="relative group overflow-hidden rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl"
-                >
-                    <img
-                        src={photo.url}
-                        alt={`Photo ${photo.id}`}
-                        className="w-full h-40 object-cover transition-opacity duration-300 group-hover:opacity-80"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
-                </div>
-            ))}
+        <div className="h-screen max-h-[calc(100vh-64px)] overflow-y-auto p-4 mb-18">
+            {/* Adjust max-h to account for fixed header/footer if needed */}
+            <div className="grid grid-cols-3 gap-4">
+                {photos.map((photo) => (
+                    <div
+                        key={photo.id}
+                        className="relative group overflow-hidden rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl"
+                    >
+                        <img
+                            src={photo.url}
+                            alt={`Photo ${photo.id}`}
+                            className="w-full h-40 object-cover transition-opacity duration-300 group-hover:opacity-80"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

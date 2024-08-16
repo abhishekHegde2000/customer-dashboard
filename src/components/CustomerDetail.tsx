@@ -10,16 +10,16 @@ interface CustomerDetailProps {
 const CustomerDetail = ({ id, customer, className }: CustomerDetailProps) => {
     return (
         <div
-            className={`p-6 bg-white rounded-lg shadow-lg border border-gray-200 ${className}`}
+            className={`p-6 bg-white rounded-lg shadow-lg border border-gray-200 ${className} max-h-screen overflow-auto`}
         >
-            <div className="mb-4">
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">
-                    Customer ID: {id}
+            <div className="mb-6">
+                <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                    Customer Name: {customer?.name}
                 </h2>
-                <p className="text-gray-600">{customer?.description}</p>
+                <p className="text-gray-600 text-lg">{customer?.description}</p>
             </div>
-            <div className="border-t border-gray-300 pt-4">
-                <h3 className="text-xl font-semibold text-gray-700 mb-2">
+            <div className="border-t border-gray-300 pt-6">
+                <h3 className="text-2xl font-semibold text-gray-700 mb-4">
                     Photos
                 </h3>
                 <PhotoGrid id={customer?.id} />

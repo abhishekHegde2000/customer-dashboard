@@ -32,23 +32,25 @@ const CustomerList = () => {
     return (
         <div className="flex h-screen overflow-hidden">
             {/* Customer List Panel */}
-            <div className="w-1/3 bg-gray-100 border-r border-gray-300 p-4">
-                <h2 className="text-xl font-semibold mb-4">Customers</h2>
-                <ScrollArea className="h-full overflow-y-auto rounded-md border border-gray-300 bg-white p-2">
+            <div className="w-1/3 max-w-xs bg-gray-100 border-r border-gray-300 p-4 flex flex-col">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                    Customers
+                </h2>
+                <ScrollArea className="flex-1 overflow-y-auto rounded-lg bg-white shadow-inner p-2">
                     {customers.map((customer) => (
                         <CustomerCard
                             key={customer.id}
                             customer={customer}
                             isSelected={selectedCustomerId === customer.id}
                             onClick={handleCardClick}
-                            className="mb-2 transition-transform transform hover:scale-105 hover:shadow-lg"
+                            className="mb-3 transition-transform transform hover:scale-105 hover:shadow-xl"
                         />
                     ))}
                 </ScrollArea>
             </div>
 
             {/* Customer Detail Panel */}
-            <div className="flex-1 p-4 bg-gray-50">
+            <div className="flex-1 max-h-screen p-6 bg-gray-50">
                 {selectedCustomerId ? (
                     <CustomerDetail
                         id={selectedCustomerId}
@@ -58,7 +60,7 @@ const CustomerList = () => {
                         className="transition-opacity duration-300 opacity-100"
                     />
                 ) : (
-                    <div className="text-center text-gray-600">
+                    <div className="flex items-center justify-center h-full text-gray-600 text-lg">
                         Select a customer to see details
                     </div>
                 )}
