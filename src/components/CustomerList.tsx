@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import CustomerCard from "./CustomerCard";
 import CustomerDetail from "./CustomerDetail";
-import { Separator } from "@/components/ui/separator";
 
 const CustomerList = () => {
     const [customers, setCustomers] = useState<Customer[]>([]);

@@ -7,7 +7,7 @@ interface CustomerDetailProps {
     customer?: Customer;
 }
 
-const CustomerDetail = ({ id, customer, className }: CustomerDetailProps) => {
+const CustomerDetail = ({ customer, className }: CustomerDetailProps) => {
     return (
         <div
             className={`p-6 bg-white rounded-lg shadow-lg border border-gray-200 ${className} max-h-screen overflow-auto`}

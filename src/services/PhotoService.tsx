@@ -1,4 +1,3 @@
-import { Photo } from "@/types/types";
 import { photos, URL1 } from "@/utils/constants";
 
 export const fetchPhotos = async () => {
