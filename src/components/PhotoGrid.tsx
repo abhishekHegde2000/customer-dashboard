@@ -46,14 +46,28 @@ const PhotoGrid = ({ id }: PhotoGridProps) => {
     }, [loadedPhotos, id]);
 
     if (loading) {
-        return <div>Loading...</div>; // You can replace this with a spinner or more styled loading indicator
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <div className="text-lg font-semibold text-gray-600">
+                    Loading...
+                </div>
+            </div>
+        );
     }
 
     return (
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-3 gap-4 p-4">
             {photos.map((photo) => (
-                <div key={photo.id}>
-                    <img src={photo.url} className="w-full h-40 object-cover" />
+                <div
+                    key={photo.id}
+                    className="relative group overflow-hidden rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl"
+                >
+                    <img
+                        src={photo.url}
+                        alt={`Photo ${photo.id}`}
+                        className="w-full h-40 object-cover transition-opacity duration-300 group-hover:opacity-80"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
                 </div>
             ))}
         </div>
